@@ -26,8 +26,15 @@ let stage = Stage()
 stage.setSize(width: 512, height: 512)
 stage.setBackground(color: black)
 
-let translucent_green = Color(red: 0, green: 255, blue: 0, alpha: 128)
-let rect = createRectOn(stage, colour: translucent_green)
+let red    = Color(red: 255, green: 0,   blue: 0,   alpha: 128 )
+let green  = Color(red: 0,   green: 255, blue: 0,   alpha: 128 )
+let blue   = Color(red: 0,   green: 0,   blue: 255, alpha: 128 )
+let yellow = Color(red: 255, green: 255, blue: 0,   alpha: 128 )
+let cyan   = Color(red: 0,   green: 255, blue: 255, alpha: 128 )
+let purple = Color(red: 255, green: 0,   blue: 255, alpha: 128 )
+
+let colours = [red, green, blue, yellow, cyan, purple]
+let rectangles = colours.map { createRectOn(stage, colour: $0) }
 
 stage.show()
 
