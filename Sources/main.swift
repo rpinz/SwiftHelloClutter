@@ -37,6 +37,18 @@ let purple = Color(red: 255, green: 0,   blue: 255, alpha: 128 )
 let colours = [red, green, blue, yellow, cyan, purple]
 let rectangles = colours.map { createRectOn(stage, colour: $0) }
 
+//
+// Hide clicked rectangles
+//
+stage.connect(event: .buttonPressEvent) { stage, event, _ in
+    var x: gfloat = 0
+    var y: gfloat = 0
+    clutter_event_get_coords(event, &x, &y)
+    let clicked = ActorRef(stage.getActorAtPos(pickMode: .all, x: CInt(x), y: CInt(y)))
+    guard clicked.ptr != stage.ptr else { return }
+    clicked.hide()
+}
+
 var scale = 0.0
 var rotation = 0.0
 let timeLine = Timeline(msecs: 60)
@@ -51,7 +63,7 @@ timeLine.onNewFrame { _,_,_ in
     let n = rectangles.count
     for i in 0..<n {
         let r = rectangles[i]
-        r.setRotationAngle(axis:.z_axis, angle: rotation * Double(n-i-1))
+        r.setRotationAngle(axis: .z_axis, angle: rotation * Double(n-i-1))
         r.setScale(scaleX: scaleAmount, scaleY: scaleAmount)
     }
 }
