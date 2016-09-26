@@ -65,6 +65,7 @@ timeLine.onNewFrame { _,_,_ in
         let r = rectangles[i]
         r.setRotationAngle(axis: .z_axis, angle: rotation * Double(n-i-1))
         r.setScale(scaleX: scaleAmount, scaleY: scaleAmount)
+        if scale == 0 { r.show() }
     }
 }
 timeLine.start()
