@@ -3,7 +3,7 @@ import PackageDescription
 let package = Package(
     name: "HelloClutter",
     dependencies: [
-        .Package(url: "https://github.com/rhx/SwiftClutter.git", majorVersion: 2)
+        .Package(url: "https://github.com/rpinz/SwiftClutter", majorVersion: 2)
     ],
     swiftLanguageVersions: [3, 4]
 )
